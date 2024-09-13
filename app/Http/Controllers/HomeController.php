@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Services\OTPService;
 
@@ -38,10 +39,13 @@ class HomeController extends Controller
     {
         return view('seller.dashboard');
     }
+    
     public function cus()
     {
-        return view('customer.dashboard');
+        $product = Product::all();
+        return view('customer.dashboard', compact('product'));
     }
+
     public function join()
     {
         $user = Auth::user();
